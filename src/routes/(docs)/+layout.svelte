@@ -13,7 +13,7 @@
 		<header class="flex h-12 shrink-0 items-center border-b px-4">
 			<DocsBreadcrumbs />
 		</header>
-		<div class="mx-auto w-full max-w-3xl px-6 py-12">
+		<div class="mx-auto w-full max-w-3xl px-8 py-12">
 			{@render children?.()}
 		</div>
 	</Sidebar.Inset>
