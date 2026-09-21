@@ -3,10 +3,14 @@ import { defineConfig } from 'vitest/config';
 import { playwright } from '@vitest/browser-playwright';
 import adapter from '@sveltejs/adapter-auto';
 import { sveltekit } from '@sveltejs/kit/vite';
+import { svmd } from '@svmd/vite';
 
 export default defineConfig({
 	plugins: [
 		tailwindcss(),
+		// svmd goes before the SvelteKit plugin: it hands vite-plugin-svelte already-compiled
+		// Svelte, not markdown.
+		svmd({ include: ['src/content/docs/**/*.md'] }),
 		sveltekit({
 			compilerOptions: {
 				// Force runes mode for the project, except for libraries. Can be removed in svelte 6.
