@@ -4,6 +4,7 @@
 	import { ModeWatcher } from 'mode-watcher';
 	import { config } from '$lib/config/app';
 	import type { LayoutProps } from './$types';
+	import Navbar from '$lib/components/layout/navigation/navbar.svelte';
 
 	let { children }: LayoutProps = $props();
 </script>
@@ -27,4 +28,10 @@
 	Skip to main content
 </a>
 
-{@render children?.()}
+<div>
+	<Navbar></Navbar>
+
+	<main id="main-content" tabindex="-1">
+		{@render children?.()}
+	</main>
+</div>

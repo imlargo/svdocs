@@ -12,17 +12,24 @@ export interface AppConfig {
 			description: string;
 		};
 	};
+	links: {
+		/** Repository URL. The navbar's GitHub button only links out when this is set. */
+		github: string;
+	};
 }
 
 export const config: AppConfig = {
 	// Hardcoded, not env-driven: this changes once per project, not once per deploy environment.
 	branding: {
-		name: 'App',
+		name: 'svdocs',
 		logo: defaultLogo,
 		favicon: defaultFavicon,
 		seo: {
-			title: 'App',
-			description: ''
+			title: 'svdocs',
+			description: 'A Svelte 5 + shadcn-svelte template for building documentation sites.'
 		}
+	},
+	links: {
+		github: ''
 	}
 };

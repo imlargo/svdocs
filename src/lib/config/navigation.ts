@@ -1,28 +1,24 @@
-import HomeIcon from '@lucide/svelte/icons/house';
-import type { LucideIcon } from '@lucide/svelte';
-
-export enum NavigationGroup {
-	Main = 'main'
-}
-
-export interface NavigationItem {
+export interface NavLink {
 	title: string;
-	icon: LucideIcon;
-	to: string;
-	group: NavigationGroup;
+	href: string;
 }
 
-// ─── Navigation items ─────────────────────────────────────────────────────────
-// Add/remove items here. The sidebar and site-header derive from this list.
-export const NAVIGATION_ITEMS: NavigationItem[] = [
-	{
-		title: 'Dashboard',
-		icon: HomeIcon,
-		to: '/',
-		group: NavigationGroup.Main
-	}
-];
+export interface NavGroup {
+	title: string;
+	items: NavLink[];
+}
 
-export const NAVIGATION_GROUP_LABELS: Record<NavigationGroup, string> = {
-	[NavigationGroup.Main]: 'Main'
-};
+export type NavEntry = NavLink | NavGroup;
+
+export function isNavGroup(entry: NavEntry): entry is NavGroup {
+	return 'items' in entry;
+}
+
+// Add/remove entries here — the navbar derives from this list.
+// A plain entry renders as a link; one with `items` renders as a dropdown group.
+export const NAV_ITEMS: NavEntry[] = [
+	{ title: 'Home', href: '/' },
+	{ title: 'Showcase', href: '/showcase' },
+	{ title: 'Docs', href: '/docs' },
+	{ title: 'Blog', href: '/blog' }
+];
