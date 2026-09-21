@@ -31,7 +31,9 @@
 <div>
 	<Navbar></Navbar>
 
-	<main id="main-content" tabindex="-1">
+	<!-- Skip-link target only, not the `main` landmark: nested layouts (e.g. the docs
+	     sidebar's Sidebar.Inset) render their own `<main>`, and HTML forbids nesting two. -->
+	<div id="main-content" tabindex="-1">
 		{@render children?.()}
-	</main>
+	</div>
 </div>

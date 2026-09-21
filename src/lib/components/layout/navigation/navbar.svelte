@@ -8,7 +8,7 @@
 </script>
 
 <header class="border-b">
-	<div class="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
+	<div class="flex h-(--header-height) items-center justify-between pr-4 pl-8">
 		<div class="flex items-center gap-6">
 			<a href={resolve('/')} class="flex items-center gap-2 font-semibold">
 				<img src={config.branding.logo} alt="" class="size-6" />
@@ -20,7 +20,9 @@
 
 		<div class="flex items-center gap-3">
 			<NavbarSearch />
-			<Separator orientation="vertical" class="h-4" />
+			<div class="flex items-center justify-center">
+				<Separator orientation="vertical" class="h-4" />
+			</div>
 			<NavbarActions />
 		</div>
 	</div>
