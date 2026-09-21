@@ -10,10 +10,10 @@
 <Sidebar.Provider style="height: calc(100svh - var(--header-height));">
 	<DocsSidebar />
 	<Sidebar.Inset>
-		<header class="flex h-12 shrink-0 items-center border-b px-4">
+		<header class="flex h-12 shrink-0 items-center border-b px-8">
 			<DocsBreadcrumbs />
 		</header>
-		<div class="mx-auto w-full max-w-3xl px-8 py-12">
+		<div class="w-full max-w-3xl px-8 py-12">
 			{@render children?.()}
 		</div>
 	</Sidebar.Inset>
