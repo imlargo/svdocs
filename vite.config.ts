@@ -10,8 +10,11 @@ export default defineConfig({
 		tailwindcss(),
 		// svmd goes before the SvelteKit plugin: it hands vite-plugin-svelte already-compiled
 		// Svelte, not markdown.
-		svmd({ include: ['src/content/docs/**/*.md'] }),
+		svmd({ include: ['src/content/docs/**/*.md', 'src/routes/**/+page.md'] }),
 		sveltekit({
+			// Lets a `+page.md` (or `+layout.md`) be a route on its own, with no `+page.svelte`
+			// importing it — see src/routes/(home)/+page.md.
+			extensions: ['.svelte', '.md'],
 			compilerOptions: {
 				// Force runes mode for the project, except for libraries. Can be removed in svelte 6.
 				runes: ({ filename }) =>
@@ -21,7 +24,16 @@ export default defineConfig({
 			// adapter-auto only supports some environments, see https://svelte.dev/docs/kit/adapter-auto for a list.
 			// If your environment is not supported, or you settled on a specific environment, switch out the adapter.
 			// See https://svelte.dev/docs/kit/adapters for more information about adapters.
-			adapter: adapter()
+			adapter: adapter(),
+
+			prerender: {
+				handleHttpError: ({ path, message }) => {
+					// The navbar already links to /showcase and /blog ahead of those pages existing.
+					// Expected for now — everything else should still fail the build.
+					if (path === '/showcase' || path === '/blog') return;
+					throw new Error(message);
+				}
+			}
 		})
 	],
 	test: {

@@ -3,36 +3,29 @@
 	import { resolve } from '$app/paths';
 	import type { Pathname } from '$app/types';
 	import * as Breadcrumb from '$lib/components/ui/breadcrumb/index.js';
+	import { DOCS_SIDEBAR_GROUPS } from '$lib/config/sidebar';
 
-	function titleCase(segment: string): string {
-		return segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, ' ');
-	}
-
-	let segments = $derived(
-		page.url.pathname
-			.split('/')
-			.filter(Boolean)
-			.map((segment, i, all) => ({
-				title: titleCase(segment),
-				href: '/' + all.slice(0, i + 1).join('/')
-			}))
-	);
+	// Section + page title for the current route, straight out of the sidebar structure, so the
+	// breadcrumb always matches the page's real title instead of a guess derived from its URL.
+	let trail = $derived.by(() => {
+		for (const group of DOCS_SIDEBAR_GROUPS) {
+			const item = group.items.find((item) => resolve(item.href as Pathname) === page.url.pathname);
+			if (item) return { group: group.title, page: item.title };
+		}
+		return null;
+	});
 </script>
 
-<Breadcrumb.Root>
-	<Breadcrumb.List>
-		{#each segments as segment, i (segment.href)}
+{#if trail}
+	<Breadcrumb.Root>
+		<Breadcrumb.List>
 			<Breadcrumb.Item>
-				{#if i === segments.length - 1}
-					<Breadcrumb.Page>{segment.title}</Breadcrumb.Page>
-				{:else}
-					<Breadcrumb.Link href={resolve(segment.href as Pathname)}>{segment.title}</Breadcrumb.Link
-					>
-				{/if}
+				<span class="text-muted-foreground">{trail.group}</span>
 			</Breadcrumb.Item>
-			{#if i < segments.length - 1}
-				<Breadcrumb.Separator />
-			{/if}
-		{/each}
-	</Breadcrumb.List>
-</Breadcrumb.Root>
+			<Breadcrumb.Separator />
+			<Breadcrumb.Item>
+				<Breadcrumb.Page>{trail.page}</Breadcrumb.Page>
+			</Breadcrumb.Item>
+		</Breadcrumb.List>
+	</Breadcrumb.Root>
+{/if}

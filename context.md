@@ -8,9 +8,13 @@ Long-term aspiration: become something similar to [Starlight](https://starlight.
 
 ## Current scope
 
-Only the UI, built simply and iteratively:
+Built simply and iteratively:
 
-- No content logic, docs routing, search, i18n, etc. yet — that comes later.
+- Content is Markdown, compiled by [svmd](https://github.com/imlargo/svmd) (`@svmd/vite` +
+  `@svmd/content`), under `src/content/docs/**/*.md`. A page's frontmatter (`title`,
+  `description`, `group`) drives its route, its sidebar entry and its SEO tags, with nothing to
+  register by hand. See `src/lib/content/docs.ts` and `src/lib/config/sidebar.ts`.
+- No search, i18n, versioning, etc. yet. That comes later.
 - shadcn-svelte (`src/lib/components/ui/`) is always the component base.
 
 ## Upcoming

@@ -11,11 +11,6 @@
 
 <svelte:head>
 	<link rel="icon" href={config.branding.favicon} />
-	<!-- Fallback title/description: a page with its own <svelte:head> title overrides this. -->
-	<title>{config.branding.seo.title}</title>
-	<meta name="description" content={config.branding.seo.description} />
-	<meta property="og:title" content={config.branding.seo.title} />
-	<meta property="og:description" content={config.branding.seo.description} />
 </svelte:head>
 
 <ModeWatcher />

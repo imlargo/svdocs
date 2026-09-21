@@ -1,3 +1,5 @@
+import { getCollection, type DocsFrontmatter } from '$lib/content/docs';
+
 export interface SidebarLink {
 	title: string;
 	href: string;
@@ -8,13 +10,21 @@ export interface SidebarGroup {
 	items: SidebarLink[];
 }
 
-// Add/remove groups here — the docs sidebar derives from this list.
-export const DOCS_SIDEBAR_GROUPS: SidebarGroup[] = [
-	{
-		title: 'Getting Started',
-		items: [
-			{ title: 'Introduction', href: '/docs' },
-			{ title: 'Installation', href: '/docs/installation' }
-		]
-	}
-];
+// Derived from `src/content/docs/**/*.md` — add a page there with a `group` in its frontmatter
+// and it shows up here, no separate place to register it. Order follows the collection's own
+// (file path) order, so `index.md` sorts before `installation.md` without needing a manual sort.
+const entries = getCollection('docs').map((entry) => {
+	const data = entry.data as unknown as DocsFrontmatter;
+	return {
+		title: data.title,
+		group: data.group,
+		href: entry.slug ? `/docs/${entry.slug}` : '/docs'
+	};
+});
+
+const groupTitles = [...new Set(entries.map((entry) => entry.group))];
+
+export const DOCS_SIDEBAR_GROUPS: SidebarGroup[] = groupTitles.map((title) => ({
+	title,
+	items: entries.filter((entry) => entry.group === title)
+}));
