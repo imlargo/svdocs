@@ -5,6 +5,8 @@
 	import * as Breadcrumb from '$lib/components/ui/breadcrumb/index.js';
 	import { DOCS_SIDEBAR_GROUPS } from '$lib/config/sidebar';
 
+	let { class: className }: { class?: string } = $props();
+
 	// Section + page title for the current route, straight out of the sidebar structure, so the
 	// breadcrumb always matches the page's real title instead of a guess derived from its URL.
 	let trail = $derived.by(() => {
@@ -17,7 +19,7 @@
 </script>
 
 {#if trail}
-	<Breadcrumb.Root>
+	<Breadcrumb.Root class={className}>
 		<Breadcrumb.List>
 			<Breadcrumb.Item>
 				<span class="text-muted-foreground">{trail.group}</span>

@@ -13,7 +13,7 @@
 	}
 </script>
 
-<Sidebar.Root {...restProps} bind:ref collapsible="none">
+<Sidebar.Root {...restProps} bind:ref collapsible="none" class="bg-transparent">
 	<Sidebar.Content class="px-4 pt-4">
 		{#each DOCS_SIDEBAR_GROUPS as group (group.title)}
 			<Sidebar.Group>
