@@ -15,7 +15,7 @@
 </svelte:head>
 
 <article>
-	<DocsBreadcrumbs class="mb-2" />
+	<DocsBreadcrumbs class="mb-5" />
 	<h1 class="text-3xl font-semibold">{title}</h1>
 	{#if description}
 		<p class="mt-2 text-lg text-muted-foreground">{description}</p>
