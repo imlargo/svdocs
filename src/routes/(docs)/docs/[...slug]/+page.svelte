@@ -6,6 +6,6 @@
 	const Content = $derived(data.Content);
 </script>
 
-<DocsProse title={data.title} description={data.description}>
+<DocsProse title={data.title} description={data.description} raw={data.raw}>
 	<Content />
 </DocsProse>

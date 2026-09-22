@@ -17,3 +17,15 @@ export const { getEntry, getCollection } = createContent({
 		body: import.meta.glob('/src/content/docs/**/*.md')
 	}
 });
+
+// Raw, unparsed file contents, keyed the same way as the glob above (`entry.path`). Backs the
+// "Copy page" / "View as Markdown" actions, which want the source, not the rendered page.
+const rawSources = import.meta.glob('/src/content/docs/**/*.md', {
+	eager: true,
+	query: '?raw',
+	import: 'default'
+}) as Record<string, string>;
+
+export function getRawSource(path: string): string {
+	return rawSources[path] ?? '';
+}

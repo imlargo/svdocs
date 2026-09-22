@@ -2,9 +2,14 @@
 	import type { Snippet } from 'svelte';
 	import { config } from '$lib/config/app';
 	import DocsBreadcrumbs from './docs-breadcrumbs.svelte';
+	import DocsPageActions from './docs-page-actions.svelte';
 
-	let { title, description, children }: { title: string; description?: string; children: Snippet } =
-		$props();
+	let {
+		title,
+		description,
+		raw,
+		children
+	}: { title: string; description?: string; raw: string; children: Snippet } = $props();
 </script>
 
 <svelte:head>
@@ -16,10 +21,15 @@
 
 <article>
 	<DocsBreadcrumbs class="mb-5" />
-	<h1 class="text-3xl font-semibold">{title}</h1>
-	{#if description}
-		<p class="mt-2 text-lg text-muted-foreground">{description}</p>
-	{/if}
+	<div class="flex flex-wrap items-start justify-between gap-4">
+		<div>
+			<h1 class="text-3xl font-semibold">{title}</h1>
+			{#if description}
+				<p class="mt-2 text-lg text-muted-foreground">{description}</p>
+			{/if}
+		</div>
+		<DocsPageActions {raw} />
+	</div>
 	<div class="prose mt-8 max-w-none dark:prose-invert">
 		{@render children()}
 	</div>
