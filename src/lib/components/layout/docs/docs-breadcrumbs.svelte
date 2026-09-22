@@ -4,7 +4,6 @@
 	import type { Pathname } from '$app/types';
 	import * as Breadcrumb from '$lib/components/ui/breadcrumb/index.js';
 	import { DOCS_SIDEBAR_GROUPS } from '$lib/config/sidebar';
-	import SlashIcon from '@lucide/svelte/icons/slash';
 
 	let { class: className }: { class?: string } = $props();
 
@@ -26,7 +25,7 @@
 				<span class="text-muted-foreground">{trail.group}</span>
 			</Breadcrumb.Item>
 			<Breadcrumb.Separator>
-				<SlashIcon />
+				<span class="pointer-events-none select-none">/</span>
 			</Breadcrumb.Separator>
 			<Breadcrumb.Item>
 				<Breadcrumb.Page>{trail.page}</Breadcrumb.Page>
