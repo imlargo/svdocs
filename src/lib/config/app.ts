@@ -30,6 +30,6 @@ export const config: AppConfig = {
 		}
 	},
 	links: {
-		github: ''
+		github: 'https://github.com/imlargo/svdocs'
 	}
 };
