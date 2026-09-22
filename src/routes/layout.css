@@ -134,3 +134,34 @@
 		@apply font-sans;
 	}
 }
+
+@layer components {
+	.shiki {
+		@apply my-4 overflow-x-auto rounded-lg border p-4 text-[0.8125rem]/6;
+		scrollbar-width: thin;
+		scrollbar-color: var(--color-border) transparent;
+	}
+}
+
+/*
+ * Shiki emits both themes as CSS variables (`defaultColor: false`, set in svmd-highlight.ts) and
+ * writes no inline colors, so the theme switch costs nothing at runtime and needs no `!important`
+ * to win.
+ */
+.shiki,
+.shiki span {
+	color: var(--shiki-light);
+	background-color: var(--shiki-light-bg);
+	font-style: var(--shiki-light-font-style);
+	font-weight: var(--shiki-light-font-weight);
+	text-decoration: var(--shiki-light-text-decoration);
+}
+
+.dark .shiki,
+.dark .shiki span {
+	color: var(--shiki-dark);
+	background-color: var(--shiki-dark-bg);
+	font-style: var(--shiki-dark-font-style);
+	font-weight: var(--shiki-dark-font-weight);
+	text-decoration: var(--shiki-dark-text-decoration);
+}

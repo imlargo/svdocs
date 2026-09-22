@@ -4,13 +4,17 @@ import { playwright } from '@vitest/browser-playwright';
 import adapter from '@sveltejs/adapter-auto';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { svmd } from '@svmd/vite';
+import { highlightCode } from './svmd-highlight.ts';
 
 export default defineConfig({
 	plugins: [
 		tailwindcss(),
 		// svmd goes before the SvelteKit plugin: it hands vite-plugin-svelte already-compiled
 		// Svelte, not markdown.
-		svmd({ include: ['src/content/docs/**/*.md', 'src/routes/**/+page.md'] }),
+		svmd({
+			include: ['src/content/docs/**/*.md', 'src/routes/**/+page.md'],
+			highlight: highlightCode
+		}),
 		sveltekit({
 			// Lets a `+page.md` (or `+layout.md`) be a route on its own, with no `+page.svelte`
 			// importing it — see src/routes/(home)/+page.md.
