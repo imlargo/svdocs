@@ -1,15 +1,28 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import { config } from '$lib/config/app';
+	import type { SidebarLink } from '$lib/config/sidebar';
 	import DocsBreadcrumbs from './docs-breadcrumbs.svelte';
 	import DocsPageActions from './docs-page-actions.svelte';
+	import DocsPageFooter from './docs-page-footer.svelte';
 
 	let {
 		title,
 		description,
 		raw,
+		updated,
+		prev,
+		next,
 		children
-	}: { title: string; description?: string; raw: string; children: Snippet } = $props();
+	}: {
+		title: string;
+		description?: string;
+		raw: string;
+		updated?: string;
+		prev?: SidebarLink;
+		next?: SidebarLink;
+		children: Snippet;
+	} = $props();
 </script>
 
 <svelte:head>
@@ -33,4 +46,5 @@
 	<div class="prose mt-8 max-w-none dark:prose-invert">
 		{@render children()}
 	</div>
+	<DocsPageFooter {updated} {prev} {next} />
 </article>

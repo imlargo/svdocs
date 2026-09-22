@@ -2,6 +2,7 @@
 title: Installation
 description: Get the template running locally.
 group: Getting Started
+updated: 2026-09-21
 ---
 
 ## Requirements

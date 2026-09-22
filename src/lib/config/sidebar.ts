@@ -28,3 +28,7 @@ export const DOCS_SIDEBAR_GROUPS: SidebarGroup[] = groupTitles.map((title) => ({
 	title,
 	items: entries.filter((entry) => entry.group === title)
 }));
+
+// Flat, ordered list of every page — same order as the sidebar, groups included, just without the
+// group boundaries. Drives the prev/next footer.
+export const DOCS_PAGES: SidebarLink[] = DOCS_SIDEBAR_GROUPS.flatMap((group) => group.items);

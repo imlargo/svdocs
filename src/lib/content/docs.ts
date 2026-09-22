@@ -9,6 +9,8 @@ export interface DocsFrontmatter {
 	description?: string;
 	/** Sidebar section this page is listed under. */
 	group: string;
+	/** ISO date (e.g. `2026-09-20`). Shown at the bottom of the page when set. */
+	updated?: string;
 }
 
 export const { getEntry, getCollection } = createContent({
