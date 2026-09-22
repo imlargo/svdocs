@@ -8,15 +8,18 @@
 	let { updated, prev, next }: { updated?: string; prev?: SidebarLink; next?: SidebarLink } =
 		$props();
 
-	const formattedUpdated = $derived(
-		updated
-			? new Date(updated).toLocaleDateString('en-US', {
-					year: 'numeric',
-					month: 'long',
-					day: 'numeric'
-				})
-			: null
-	);
+	// Parsed as a local calendar date rather than `new Date(updated)`: a date-only string parses as
+	// UTC midnight, which `toLocaleDateString` in a negative UTC offset then renders as the day
+	// before.
+	const formattedUpdated = $derived.by(() => {
+		if (!updated) return null;
+		const [year, month, day] = updated.split('-').map(Number);
+		return new Date(year, month - 1, day).toLocaleDateString('en-US', {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric'
+		});
+	});
 </script>
 
 {#if formattedUpdated || prev || next}
