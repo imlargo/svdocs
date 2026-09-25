@@ -11,7 +11,7 @@ export const load = async ({ params }) => {
 
 	const { title, description, updated } = entry.data as unknown as DocsFrontmatter;
 	const { default: Content } = await entry.load();
-	const raw = getRawSource(entry.path);
+	const raw = await getRawSource(entry.path);
 
 	const href = entry.slug ? `/docs/${entry.slug}` : '/docs';
 	const index = DOCS_PAGES.findIndex((page) => page.href === href);

@@ -5,6 +5,8 @@ import adapter from '@sveltejs/adapter-auto';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { svmd } from '@svmd/vite';
 import { highlightCode } from './svmd-highlight.ts';
+import { rehypeHeadingIds } from './rehype-heading-ids.ts';
+import { searchIndex } from './vite-plugin-search.ts';
 
 export default defineConfig({
 	plugins: [
@@ -13,8 +15,10 @@ export default defineConfig({
 		// Svelte, not markdown.
 		svmd({
 			include: ['src/content/docs/**/*.md', 'src/routes/**/+page.md'],
-			highlight: highlightCode
+			highlight: highlightCode,
+			rehypePlugins: [rehypeHeadingIds]
 		}),
+		searchIndex(),
 		sveltekit({
 			// Lets a `+page.md` (or `+layout.md`) be a route on its own, with no `+page.svelte`
 			// importing it — see src/routes/(home)/+page.md.
