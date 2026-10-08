@@ -11,7 +11,7 @@ const gitignorePath = path.resolve(import.meta.dirname, '.gitignore');
 export default defineConfig(
 	includeIgnoreFile(gitignorePath),
 	{
-		ignores: ['src/lib/components/ui/**']
+		ignores: ['src/lib/components/ui/**', 'src/lib/components/coral/**']
 	},
 	js.configs.recommended,
 	ts.configs.recommended,

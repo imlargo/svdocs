@@ -8,7 +8,11 @@ bun.lockb
 # Miscellaneous
 /static/
 src/lib/components/ui/
+src/lib/components/coral/
 
 # Agent tooling — written by the tools, not by us
 .claude/
 .agents/
+skills-lock.json
+
+worker-configuration.d.ts

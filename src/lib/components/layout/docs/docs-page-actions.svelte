@@ -3,9 +3,9 @@
 	import FileTextIcon from '@lucide/svelte/icons/file-text';
 	import ChevronDownIcon from '@lucide/svelte/icons/chevron-down';
 	import { toast } from 'svelte-sonner';
-	import { Button } from '$lib/components/ui/button/index.js';
-	import * as ButtonGroup from '$lib/components/ui/button-group/index.js';
-	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
+	import { Button } from '#lib/components/ui/button/index.js';
+	import * as ButtonGroup from '#lib/components/ui/button-group/index.js';
+	import * as DropdownMenu from '#lib/components/ui/dropdown-menu/index.js';
 
 	let { raw }: { raw: string } = $props();
 

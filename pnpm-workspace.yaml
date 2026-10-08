@@ -1,4 +1,4 @@
-packages: []
-
 allowBuilds:
+  sharp: true
+  workerd: true
   esbuild: true

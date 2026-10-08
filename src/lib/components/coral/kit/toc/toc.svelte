@@ -1,9 +1,10 @@
 <script lang="ts">
 	/**
 	 * @coral/kit/toc
-	 * @version 1.1.1
+	 * @version 1.0.0
 	 */
-	import { cn } from '$lib/utils.js';
+	import { prefersReducedMotion } from 'svelte/motion';
+	import { cn } from '#lib/utils.js';
 	import { collect, pickActive } from './headings.js';
 	import type { TocHeading } from './headings.js';
 	import type { TocItemContext, TocProps } from './types.js';
@@ -153,8 +154,7 @@
 		const node = document.getElementById(heading.id);
 		if (!node) return;
 
-		const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-		if (!smooth || reduced) {
+		if (!smooth || prefersReducedMotion.current) {
 			// Left to the browser: it jumps, moves focus into the section, and writes the hash.
 			return;
 		}
@@ -185,13 +185,13 @@
 	<nav
 		bind:this={ref}
 		aria-label={label}
-		class={cn('flex flex-col gap-3 [--coral-toc-indent:1rem]', className)}
+		class={cn('flex flex-col gap-3 [--coral-toc-indent:--spacing(4)]', className)}
 		{...restProps}
 	>
 		{#if headingSnippet}
 			{@render headingSnippet()}
 		{:else if label}
-			<span class="text-xs font-medium tracking-wider text-muted-foreground">
+			<span class="text-xs font-medium text-muted-foreground">
 				{label}
 			</span>
 		{/if}
@@ -213,9 +213,9 @@
 					{:else}
 						<a
 							{...props}
-							style="padding-inline-start: calc(0.75rem + var(--coral-toc-indent) * {depth})"
+							style:--coral-pad="calc(var(--spacing) * 3 + var(--coral-toc-indent) * {depth})"
 							class={cn(
-								'-ms-px block border-s-2 border-transparent py-1 text-sm text-muted-foreground transition-colors hover:text-foreground aria-[current]:border-primary aria-[current]:font-medium aria-[current]:text-foreground',
+								'-ms-px block border-s-2 border-transparent py-1 ps-(--coral-pad) text-sm text-muted-foreground transition-colors hover:text-foreground aria-[current]:border-primary aria-[current]:font-medium aria-[current]:text-foreground',
 								itemClass
 							)}
 						>

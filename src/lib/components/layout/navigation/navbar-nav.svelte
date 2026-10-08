@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { resolve } from '$app/paths';
-	import type { Pathname } from '$app/types';
-	import * as NavigationMenu from '$lib/components/ui/navigation-menu/index.js';
-	import { navigationMenuTriggerStyle } from '$lib/components/ui/navigation-menu/navigation-menu-trigger.svelte';
-	import { NAV_ITEMS, isNavGroup } from '$lib/config/navigation';
+	import { resolvePathname } from '#lib/utils/paths.js';
+	import * as NavigationMenu from '#lib/components/ui/navigation-menu/index.js';
+	import { navigationMenuTriggerStyle } from '#lib/components/ui/navigation-menu/navigation-menu-trigger.svelte';
+	import { NAV_ITEMS, isNavGroup } from '#lib/config/navigation.js';
 </script>
 
 <NavigationMenu.Root>
@@ -18,7 +17,7 @@
 								<li>
 									<NavigationMenu.Link>
 										{#snippet child()}
-											<a href={resolve(link.href as Pathname)}>{link.title}</a>
+											<a href={resolvePathname(link.href)}>{link.title}</a>
 										{/snippet}
 									</NavigationMenu.Link>
 								</li>
@@ -28,7 +27,7 @@
 				{:else}
 					<NavigationMenu.Link>
 						{#snippet child()}
-							<a href={resolve(entry.href as Pathname)} class={navigationMenuTriggerStyle()}>
+							<a href={resolvePathname(entry.href)} class={navigationMenuTriggerStyle()}>
 								{entry.title}
 							</a>
 						{/snippet}

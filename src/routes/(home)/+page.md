@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { resolve } from '$app/paths';
-	import { config } from '$lib/config/app';
-	import { Button } from '$lib/components/ui/button/index.js';
+	import { resolvePathname } from '#lib/utils/paths.js';
+	import { config } from '#lib/config/app.js';
+	import { Button } from '#lib/components/ui/button/index.js';
 </script>
 
 <svelte:head>
@@ -14,6 +14,6 @@
 {config.branding.seo.description}
 
 <div class="flex gap-3">
-<Button href={resolve('/docs')}>Get started</Button>
+<Button href={resolvePathname('/docs')}>Get started</Button>
 <Button href={config.links.github || undefined} target="_blank" rel="noreferrer" variant="outline">GitHub</Button>
 </div>

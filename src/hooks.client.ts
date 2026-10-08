@@ -1,7 +1,7 @@
-import type { HandleClientError } from '@sveltejs/kit';
-import { logger } from '$lib/core/logger';
+import type { HandleClientError } from '@sveltejs/kit/hooks';
+import { logger } from '#lib/core/logger.js';
 
-export const handleError: HandleClientError = ({ error, status }) => {
-	if (status === 404) return { message: 'Not found.' };
+export const handleError: HandleClientError = ({ kind, error }) => {
+	if (kind !== 'unknown') return;
 	return { message: logger.error('client', error) };
 };

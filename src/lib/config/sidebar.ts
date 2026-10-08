@@ -1,4 +1,4 @@
-import { getCollection, type DocsFrontmatter } from '$lib/content/docs';
+import { getCollection, type DocsFrontmatter } from '#lib/content/docs.js';
 
 export interface SidebarLink {
 	title: string;

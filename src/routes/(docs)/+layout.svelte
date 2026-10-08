@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
-	import DocsSidebar from '$lib/components/layout/docs/docs-sidebar.svelte';
-	import DocsToc from '$lib/components/layout/docs/docs-toc.svelte';
+	import * as Sidebar from '#lib/components/ui/sidebar/index.js';
+	import DocsSidebar from '#lib/components/layout/docs/docs-sidebar.svelte';
+	import DocsToc from '#lib/components/layout/docs/docs-toc.svelte';
 	import type { LayoutProps } from './$types';
 
 	let { children }: LayoutProps = $props();

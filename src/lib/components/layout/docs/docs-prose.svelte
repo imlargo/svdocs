@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import { config } from '$lib/config/app';
-	import type { SidebarLink } from '$lib/config/sidebar';
+	import { config } from '#lib/config/app.js';
+	import type { SidebarLink } from '#lib/config/sidebar.js';
 	import DocsBreadcrumbs from './docs-breadcrumbs.svelte';
 	import DocsPageActions from './docs-page-actions.svelte';
 	import DocsPageFooter from './docs-page-footer.svelte';

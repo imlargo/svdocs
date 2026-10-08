@@ -1,10 +1,10 @@
 <script lang="ts">
 	import './layout.css';
-	import { Toaster } from '$lib/components/ui/sonner/index.js';
+	import { Toaster } from '#lib/components/ui/sonner/index.js';
 	import { ModeWatcher } from 'mode-watcher';
-	import { config } from '$lib/config/app';
+	import { config } from '#lib/config/app.js';
 	import type { LayoutProps } from './$types';
-	import Navbar from '$lib/components/layout/navigation/navbar.svelte';
+	import Navbar from '#lib/components/layout/navigation/navbar.svelte';
 
 	let { children }: LayoutProps = $props();
 </script>

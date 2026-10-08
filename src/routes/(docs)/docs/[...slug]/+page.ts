@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
-import { getCollection, getEntry, getRawSource, type DocsFrontmatter } from '$lib/content/docs';
-import { DOCS_PAGES } from '$lib/config/sidebar';
+import { getCollection, getEntry, getRawSource, type DocsFrontmatter } from '#lib/content/docs.js';
+import { DOCS_PAGES } from '#lib/config/sidebar.js';
 
 // The sidebar links to every page anyway, but this keeps prerendering from depending on that.
 export const entries = () => getCollection('docs').map((entry) => ({ slug: entry.slug }));

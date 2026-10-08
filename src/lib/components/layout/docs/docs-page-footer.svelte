@@ -1,9 +1,8 @@
 <script lang="ts">
 	import ChevronLeftIcon from '@lucide/svelte/icons/chevron-left';
 	import ChevronRightIcon from '@lucide/svelte/icons/chevron-right';
-	import { resolve } from '$app/paths';
-	import type { Pathname } from '$app/types';
-	import type { SidebarLink } from '$lib/config/sidebar';
+	import { resolvePathname } from '#lib/utils/paths.js';
+	import type { SidebarLink } from '#lib/config/sidebar.js';
 
 	let { updated, prev, next }: { updated?: string; prev?: SidebarLink; next?: SidebarLink } =
 		$props();
@@ -31,7 +30,7 @@
 		{#if prev || next}
 			<div class={['flex items-start justify-between gap-4', formattedUpdated && 'mt-4']}>
 				{#if prev}
-					<a href={resolve(prev.href as Pathname)} class="group flex items-center gap-2 text-start">
+					<a href={resolvePathname(prev.href)} class="group flex items-center gap-2 text-start">
 						<ChevronLeftIcon
 							class="size-4 shrink-0 text-muted-foreground transition-transform group-hover:-translate-x-0.5"
 						/>
@@ -45,7 +44,7 @@
 				{/if}
 
 				{#if next}
-					<a href={resolve(next.href as Pathname)} class="group ms-auto flex items-center gap-2">
+					<a href={resolvePathname(next.href)} class="group ms-auto flex items-center gap-2">
 						<span class="text-end">
 							<span class="block text-xs text-muted-foreground">Next</span>
 							<span class="block text-sm font-medium">{next.title}</span>

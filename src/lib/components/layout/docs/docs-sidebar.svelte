@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { resolve } from '$app/paths';
-	import type { Pathname } from '$app/types';
-	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
-	import { DOCS_SIDEBAR_GROUPS } from '$lib/config/sidebar';
+	import { resolvePathname } from '#lib/utils/paths.js';
+	import * as Sidebar from '#lib/components/ui/sidebar/index.js';
+	import { DOCS_SIDEBAR_GROUPS } from '#lib/config/sidebar.js';
 	import type { ComponentProps } from 'svelte';
 
 	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();
@@ -24,7 +23,7 @@
 							<Sidebar.MenuItem>
 								<Sidebar.MenuButton isActive={isActive(item.href)}>
 									{#snippet child({ props })}
-										<a href={resolve(item.href as Pathname)} {...props}>{item.title}</a>
+										<a href={resolvePathname(item.href)} {...props}>{item.title}</a>
 									{/snippet}
 								</Sidebar.MenuButton>
 							</Sidebar.MenuItem>

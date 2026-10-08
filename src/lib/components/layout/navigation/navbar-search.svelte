@@ -3,15 +3,14 @@
 	import HashIcon from '@lucide/svelte/icons/hash';
 	import SearchIcon from '@lucide/svelte/icons/search';
 	import { onMount } from 'svelte';
-	import { resolve } from '$app/paths';
-	import type { Pathname } from '$app/types';
-	import { Button } from '$lib/components/ui/button/index.js';
-	import * as Command from '$lib/components/ui/command/index.js';
-	import { Kbd } from '$lib/components/ui/kbd/index.js';
-	import type { SearchEngine } from '$lib/search/engine';
-	import { highlight, snippet, type Segment } from '$lib/search/highlight';
-	import { loadEngine } from '$lib/search/load';
-	import type { SearchSection } from '$lib/search/types';
+	import { resolvePathname } from '#lib/utils/paths.js';
+	import { Button } from '#lib/components/ui/button/index.js';
+	import * as Command from '#lib/components/ui/command/index.js';
+	import { Kbd } from '#lib/components/ui/kbd/index.js';
+	import type { SearchEngine } from '#lib/search/engine.js';
+	import { highlight, snippet, type Segment } from '#lib/search/highlight.js';
+	import { loadEngine } from '#lib/search/load.js';
+	import type { SearchSection } from '#lib/search/types.js';
 
 	let open = $state(false);
 	let query = $state('');
@@ -71,7 +70,7 @@
 	}
 
 	function hrefFor(section: Pick<SearchSection, 'href' | 'anchor'>) {
-		return resolve(section.href as Pathname) + (section.anchor ? `#${section.anchor}` : '');
+		return resolvePathname(section.href) + (section.anchor ? `#${section.anchor}` : '');
 	}
 
 	function close() {

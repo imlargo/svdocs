@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { resolve } from '$app/paths';
+	import { resolvePathname } from '#lib/utils/paths.js';
 </script>
 
 <div class="flex min-h-svh flex-col items-center justify-center gap-4 text-center">
@@ -19,5 +19,5 @@
 	<p class="max-w-sm text-muted-foreground">
 		{page.error?.message ?? 'An unexpected error occurred. Please try again.'}
 	</p>
-	<a href={resolve('/')} class="underline underline-offset-4 hover:text-primary">Go home</a>
+	<a href={resolvePathname('/')} class="underline underline-offset-4 hover:text-primary">Go home</a>
 </div>

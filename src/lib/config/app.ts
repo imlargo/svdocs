@@ -1,5 +1,5 @@
-import defaultLogo from '$lib/assets/logo.svg';
-import defaultFavicon from '$lib/assets/favicon.svg';
+import defaultLogo from '#lib/assets/logo.svg';
+import defaultFavicon from '#lib/assets/favicon.svg';
 
 export interface AppConfig {
 	/** Single source of truth for name/logo/favicon/SEO. */
