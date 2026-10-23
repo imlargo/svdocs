@@ -2,9 +2,9 @@
 	import { resolvePathname } from '#lib/utils/paths.js';
 	import { config } from '#lib/config/app.js';
 	import { Separator } from '#lib/components/ui/separator/index.js';
-	import NavbarNav from './navbar-nav.svelte';
-	import NavbarSearch from './navbar-search.svelte';
-	import NavbarActions from './navbar-actions.svelte';
+	import NavbarNav from '#lib/components/layout/navigation/NavbarNav.svelte';
+	import DocsSearch from '#lib/features/docs/components/DocsSearch.svelte';
+	import NavbarActions from '#lib/components/layout/navigation/NavbarActions.svelte';
 </script>
 
 <header class="border-b">
@@ -19,7 +19,7 @@
 		</div>
 
 		<div class="flex items-center gap-3">
-			<NavbarSearch />
+			<DocsSearch />
 			<div class="flex items-center justify-center">
 				<Separator orientation="vertical" class="h-4" />
 			</div>

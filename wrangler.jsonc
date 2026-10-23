@@ -1,12 +1,17 @@
 {
 	"$schema": "./node_modules/wrangler/config-schema.json",
 	"name": "svdocs",
-	"compatibility_date": "2026-10-08",
+	"compatibility_date": "2026-10-23",
 	"compatibility_flags": ["nodejs_als"],
 	"main": ".svelte-kit/cloudflare/_worker.js",
 	"assets": {
 		"binding": "ASSETS",
 		"directory": ".svelte-kit/cloudflare"
+	},
+	// Workers Logs: keeps console output (the `logger`) searchable in the
+	// Cloudflare dashboard instead of only in a live `wrangler tail`.
+	"observability": {
+		"enabled": true
 	},
 	"workers_dev": true,
 	"preview_urls": true

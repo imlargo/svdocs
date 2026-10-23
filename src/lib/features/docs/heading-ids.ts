@@ -1,4 +1,4 @@
-import { slug, uniqueId } from '../components/coral/kit/toc/headings.ts';
+import { slug, uniqueId } from '../../components/coral/kit/toc/headings.ts';
 
 /** Ids that already exist on every page, so a heading must never take one. */
 const RESERVED = ['main-content'];

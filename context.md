@@ -13,10 +13,10 @@ Built simply and iteratively:
 - Content is Markdown, compiled by [svmd](https://github.com/imlargo/svmd) (`@svmd/vite` +
   `@svmd/content`), under `src/content/docs/**/*.md`. A page's frontmatter (`title`,
   `description`, `group`) drives its route, its sidebar entry and its SEO tags, with nothing to
-  register by hand. See `src/lib/content/docs.ts` and `src/lib/config/sidebar.ts`.
-- Search is built from the same pages. `vite-plugin-search.ts` indexes every section of
-  `src/content/docs` into a virtual module that loads when search opens, and `src/lib/search/`
-  ranks it. `rehype-heading-ids.ts` writes heading ids at build time, so a result links straight to
+  register by hand. See `src/lib/features/docs/content.ts` and `src/lib/features/docs/sidebar.ts`.
+- Search is built from the same pages. `src/lib/features/docs/search/vite-plugin.ts` indexes every section of
+  `src/content/docs` into a virtual module that loads when search opens, and the rest of
+  `src/lib/features/docs/search/` ranks it. `rehype-heading-ids.ts` writes heading ids at build time, so a result links straight to
   its section.
 - No i18n, versioning, etc. yet. That comes later.
 - shadcn-svelte (`src/lib/components/ui/`) is always the component base.

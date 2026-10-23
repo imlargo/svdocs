@@ -11,7 +11,11 @@ declare global {
 			cf?: IncomingRequestCfProperties;
 		}
 
-		// interface Error {}
+		interface Error {
+			/** Set by `handleError` for unexpected errors, and logged alongside them. */
+			errorId?: string;
+		}
+
 		// interface Locals {}
 		// interface PageData {}
 		// interface PageState {}

@@ -5,9 +5,9 @@ import { playwright } from '@vitest/browser-playwright';
 import adapter from '@sveltejs/adapter-cloudflare';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { svmd } from '@svmd/vite';
-import { highlightCode } from './svmd-highlight.ts';
-import { rehypeHeadingIds } from './rehype-heading-ids.ts';
-import { searchIndex } from './vite-plugin-search.ts';
+import { highlightCode } from './src/lib/features/docs/code-highlighter.ts';
+import { rehypeHeadingIds } from './src/lib/features/docs/rehype-heading-ids.ts';
+import { searchIndex } from './src/lib/features/docs/search/vite-plugin.ts';
 
 export default defineConfig({
 	plugins: [

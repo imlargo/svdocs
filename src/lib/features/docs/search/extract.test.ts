@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { rehypeHeadingIds } from '../../../rehype-heading-ids.ts';
+import { rehypeHeadingIds } from '../rehype-heading-ids.ts';
 import { docsHref, extractSections } from './extract.ts';
 
 const page = (body: string, frontmatter = 'title: Guide\ngroup: Basics\ndescription: A guide.') =>

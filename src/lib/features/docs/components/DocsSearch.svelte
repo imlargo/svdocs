@@ -7,10 +7,10 @@
 	import { Button } from '#lib/components/ui/button/index.js';
 	import * as Command from '#lib/components/ui/command/index.js';
 	import { Kbd } from '#lib/components/ui/kbd/index.js';
-	import type { SearchEngine } from '#lib/search/engine.js';
-	import { highlight, snippet, type Segment } from '#lib/search/highlight.js';
-	import { loadEngine } from '#lib/search/load.js';
-	import type { SearchSection } from '#lib/search/types.js';
+	import type { SearchEngine } from '#lib/features/docs/search/engine.js';
+	import { highlight, snippet, type Segment } from '#lib/features/docs/search/highlight.js';
+	import { loadEngine } from '#lib/features/docs/search/load.js';
+	import type { SearchSection } from '#lib/features/docs/search/types.js';
 
 	let open = $state(false);
 	let query = $state('');

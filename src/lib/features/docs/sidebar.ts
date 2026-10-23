@@ -1,14 +1,5 @@
-import { getCollection, type DocsFrontmatter } from '#lib/content/docs.js';
-
-export interface SidebarLink {
-	title: string;
-	href: string;
-}
-
-export interface SidebarGroup {
-	title: string;
-	items: SidebarLink[];
-}
+import { getCollection } from '#lib/features/docs/content.js';
+import type { DocsFrontmatter, SidebarGroup, SidebarLink } from '#lib/features/docs/types.js';
 
 // Derived from `src/content/docs/**/*.md` — add a page there with a `group` in its frontmatter
 // and it shows up here, no separate place to register it. Order follows the collection's own

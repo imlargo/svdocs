@@ -6,7 +6,7 @@
  * `/docs/page#section` - from search, or pasted by a reader - has nothing to land on when the page
  * first loads. The ids come from `createHeadingIds`, which the search index shares.
  */
-import { createHeadingIds } from './src/lib/content/heading-ids.ts';
+import { createHeadingIds } from './heading-ids.ts';
 
 /** The slice of hast this plugin reads. svmd's tree carries more node types than these. */
 type HastNode = {
