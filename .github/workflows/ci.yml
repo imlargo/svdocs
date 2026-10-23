@@ -1,0 +1,58 @@
+# The checks AGENTS.md asks for before calling anything done, one job each, so
+# a pull request shows which one failed and a lint error does not hide a failing
+# test. The build prerenders every docs page, so a broken page fails here.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Read-only: the workflow checks code, it never writes to the repository.
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - run: pnpm run lint
+
+  typecheck:
+    # svelte-check: TypeScript over .ts files and .svelte components alike.
+    name: Typecheck
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - run: pnpm run check
+
+  test:
+    # Server tests in Node, component tests in Chromium.
+    name: Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+        with:
+          browsers: 'true'
+      - run: pnpm run test
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - run: pnpm run build

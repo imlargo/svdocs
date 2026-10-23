@@ -1,7 +1,7 @@
 node_modules
-worker-configuration.d.ts
 
 # Output
+worker-configuration.d.ts
 .output
 .vercel
 .netlify
