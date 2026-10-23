@@ -1,33 +1,25 @@
-/**
- * The single exit point for logs. To ship Sentry or structured logging, write a
- * class that implements `Logger` and reassign `logger` — nothing else in the
- * codebase changes.
- */
+/** The single exit point for logs. For Sentry or JSON, implement `Logger` and call `setLogger`. */
 
-const DEFAULT_MESSAGE = 'An unexpected error occurred.';
+/** Searchable detail for a log line. */
+type LogContext = Record<string, unknown>;
 
-/** Extracts a message safe to show a user from whatever was thrown. */
-function toMessage(error: unknown): string {
-	if (error instanceof Error) return error.message.trim() || DEFAULT_MESSAGE;
-	if (typeof error === 'string') return error.trim() || DEFAULT_MESSAGE;
-	return DEFAULT_MESSAGE;
-}
+/** svdocs raises no errors meant for a reader, so whatever reaches the log is a bug. */
+const UNEXPECTED_MESSAGE = 'An unexpected error occurred.';
 
 export interface Logger {
-	/** Logs `error` under `scope` and returns the message that is safe to show a user. */
-	error(scope: string, error: unknown): string;
+	/** Logs the error and returns the message that is safe to show. */
+	error(scope: string, error: unknown, context?: LogContext): string;
 }
 
 class ConsoleLogger implements Logger {
-	error(scope: string, error: unknown): string {
-		console.error(`[${scope}]`, error);
-		return toMessage(error);
+	error(scope: string, error: unknown, context?: LogContext): string {
+		console.error(`[${scope}]`, error, ...(context ? [context] : []));
+		return UNEXPECTED_MESSAGE;
 	}
 }
 
 export let logger: Logger = new ConsoleLogger();
 
-/** Swaps the active implementation — e.g. for a SentryLogger, or a no-op one in tests. */
 export function setLogger(impl: Logger): void {
 	logger = impl;
 }

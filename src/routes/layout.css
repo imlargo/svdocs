@@ -144,9 +144,9 @@
 }
 
 /*
- * Shiki emits both themes as CSS variables (`defaultColor: false`, set in svmd-highlight.ts) and
- * writes no inline colors, so the theme switch costs nothing at runtime and needs no `!important`
- * to win.
+ * Shiki emits both themes as CSS variables (`defaultColor: false`, set in
+ * features/docs/code-highlighter.ts) and writes no inline colors, so the theme switch costs nothing
+ * at runtime and needs no `!important` to win.
  */
 .shiki,
 .shiki span {

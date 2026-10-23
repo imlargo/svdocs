@@ -4,7 +4,7 @@
 	import { ModeWatcher } from 'mode-watcher';
 	import { config } from '#lib/config/app.js';
 	import type { LayoutProps } from './$types';
-	import Navbar from '#lib/components/layout/navigation/navbar.svelte';
+	import Navbar from '#lib/components/layout/navigation/Navbar.svelte';
 
 	let { children }: LayoutProps = $props();
 </script>

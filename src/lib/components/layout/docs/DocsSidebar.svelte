@@ -2,7 +2,7 @@
 	import { page } from '$app/state';
 	import { resolvePathname } from '#lib/utils/paths.js';
 	import * as Sidebar from '#lib/components/ui/sidebar/index.js';
-	import { DOCS_SIDEBAR_GROUPS } from '#lib/config/sidebar.js';
+	import { DOCS_SIDEBAR_GROUPS } from '#lib/features/docs/sidebar.js';
 	import type { ComponentProps } from 'svelte';
 
 	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();

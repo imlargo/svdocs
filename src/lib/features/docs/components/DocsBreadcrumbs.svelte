@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import * as Breadcrumb from '#lib/components/ui/breadcrumb/index.js';
-	import { DOCS_SIDEBAR_GROUPS } from '#lib/config/sidebar.js';
+	import { DOCS_SIDEBAR_GROUPS } from '#lib/features/docs/sidebar.js';
 
 	let { class: className }: { class?: string } = $props();
 

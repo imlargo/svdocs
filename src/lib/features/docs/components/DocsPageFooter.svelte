@@ -2,7 +2,7 @@
 	import ChevronLeftIcon from '@lucide/svelte/icons/chevron-left';
 	import ChevronRightIcon from '@lucide/svelte/icons/chevron-right';
 	import { resolvePathname } from '#lib/utils/paths.js';
-	import type { SidebarLink } from '#lib/config/sidebar.js';
+	import type { SidebarLink } from '#lib/features/docs/types.js';
 
 	let { updated, prev, next }: { updated?: string; prev?: SidebarLink; next?: SidebarLink } =
 		$props();

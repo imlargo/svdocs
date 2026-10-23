@@ -1,6 +1,6 @@
 /**
  * Turns a docs page's Markdown into the sections the search index is built from. Runs at build
- * time, in Node, from `vite-plugin-search.ts` - never in the browser.
+ * time, in Node, from `vite-plugin.ts` - never in the browser.
  *
  * It reads the source rather than the compiled page, so it is a line scanner and not a Markdown
  * parser. That is enough for what a search needs: which heading a piece of text sits under, and
@@ -9,7 +9,7 @@
  * not seen, which the heading ids share: `rehype-heading-ids.ts` numbers the same headings.
  */
 import { parse } from 'yaml';
-import { createHeadingIds } from '../content/heading-ids.ts';
+import { createHeadingIds } from '../heading-ids.ts';
 import type { SearchSection } from './types.ts';
 
 const FRONTMATTER = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/;

@@ -2,14 +2,14 @@
  * The docs search index, as a virtual module: `import { sections } from 'virtual:svdocs-search'`.
  *
  * Built from the Markdown in `src/content/docs` when the module is first loaded, and again in dev
- * when one of those files changes. The site never imports it up front - `src/lib/search/load.ts`
+ * when one of those files changes. The site never imports it up front - `load.ts`
  * fetches it the first time search is opened - so it costs a page nothing until then.
  */
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import type { Plugin } from 'vite';
-import { docsHref, extractSections } from './src/lib/search/extract.ts';
-import type { SearchSection } from './src/lib/search/types.ts';
+import { docsHref, extractSections } from './extract.ts';
+import type { SearchSection } from './types.ts';
 
 const ID = 'virtual:svdocs-search';
 const RESOLVED = `\0${ID}`;

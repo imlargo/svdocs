@@ -1,10 +1,10 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import { config } from '#lib/config/app.js';
-	import type { SidebarLink } from '#lib/config/sidebar.js';
-	import DocsBreadcrumbs from './docs-breadcrumbs.svelte';
-	import DocsPageActions from './docs-page-actions.svelte';
-	import DocsPageFooter from './docs-page-footer.svelte';
+	import type { SidebarLink } from '#lib/features/docs/types.js';
+	import DocsBreadcrumbs from '#lib/features/docs/components/DocsBreadcrumbs.svelte';
+	import DocsPageActions from '#lib/features/docs/components/DocsPageActions.svelte';
+	import DocsPageFooter from '#lib/features/docs/components/DocsPageFooter.svelte';
 
 	let {
 		title,
