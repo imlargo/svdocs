@@ -11,9 +11,9 @@ inputs:
 runs:
   using: composite
   steps:
+    # The pnpm version comes from `packageManager` in package.json, the same
+    # source Cloudflare's build reads.
     - uses: pnpm/action-setup@v4
-      with:
-        version: 11
 
     - uses: actions/setup-node@v4
       with:
