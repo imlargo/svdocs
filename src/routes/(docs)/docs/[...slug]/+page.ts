@@ -2,6 +2,7 @@ import { error } from '@sveltejs/kit';
 import { getCollection, getEntry, getRawSource } from '#lib/features/docs/content.js';
 import type { DocsFrontmatter } from '#lib/features/docs/types.js';
 import { DOCS_PAGES } from '#lib/features/docs/sidebar.js';
+import type { TocHeading } from '#lib/components/coral/kit/toc/headings.js';
 
 // The sidebar links to every page anyway, but this keeps prerendering from depending on that.
 export const entries = () => getCollection('docs').map((entry) => ({ slug: entry.slug }));
@@ -11,7 +12,7 @@ export const load = async ({ params }) => {
 	if (!entry) error(404, 'Not found');
 
 	const { title, description, updated } = entry.data as unknown as DocsFrontmatter;
-	const { default: Content } = await entry.load();
+	const { default: Content, headings } = await entry.load();
 	const raw = await getRawSource(entry.path);
 
 	const href = entry.slug ? `/docs/${entry.slug}` : '/docs';
@@ -19,5 +20,10 @@ export const load = async ({ params }) => {
 	const prev = index > 0 ? DOCS_PAGES[index - 1] : undefined;
 	const next = index !== -1 && index < DOCS_PAGES.length - 1 ? DOCS_PAGES[index + 1] : undefined;
 
-	return { Content, title, description, raw, updated, prev, next };
+	// The table of contents lists what svmd read from the page at build time, so it renders on the server.
+	const toc: TocHeading[] = headings.flatMap(({ depth, text, id }) =>
+		id && depth >= 2 && depth <= 3 ? [{ id, text, level: depth }] : []
+	);
+
+	return { Content, title, description, raw, updated, prev, next, toc };
 };
