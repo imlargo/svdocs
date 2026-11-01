@@ -16,14 +16,14 @@ export default defineConfig({
 		// svmd goes before the SvelteKit plugin: it hands vite-plugin-svelte already-compiled Svelte, not
 		// markdown.
 		svmd({
-			include: ['src/content/docs/**/*.md', 'src/routes/**/+page.md'],
+			include: ['src/content/docs/**/*.md'],
 			highlight: highlightCode,
 			rehypePlugins: [rehypeHeadingIds]
 		}),
 		searchIndex(),
 		sveltekit({
 			// Lets a `+page.md` be a route on its own, with no `+page.svelte` importing it — see
-			// src/routes/(home)/+page.md.
+			// src/routes/(home)/+page.md. svmd reads this list and compiles route files itself.
 			extensions: ['.svelte', '.md'],
 			compilerOptions: {
 				// Force runes mode for the project, except for libraries. Can be removed in svelte 6.
