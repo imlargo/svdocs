@@ -3,9 +3,9 @@ allowBuilds:
   workerd: true
   esbuild: true
 minimumReleaseAgeExclude:
-  - '@svmd/content@0.3.0'
-  - '@svmd/core@0.3.0'
-  - '@svmd/mdast-util-svelte@0.3.0'
-  - '@svmd/micromark-extension-svelte@0.3.0'
-  - '@svmd/micromark-factory-svelte-expression@0.3.0'
-  - '@svmd/vite@0.3.0'
+  - '@svmd/content@0.3.0 || 0.3.1'
+  - '@svmd/core@0.3.0 || 0.3.1'
+  - '@svmd/mdast-util-svelte@0.3.0 || 0.3.1'
+  - '@svmd/micromark-extension-svelte@0.3.0 || 0.3.1'
+  - '@svmd/micromark-factory-svelte-expression@0.3.0 || 0.3.1'
+  - '@svmd/vite@0.3.0 || 0.3.1'
